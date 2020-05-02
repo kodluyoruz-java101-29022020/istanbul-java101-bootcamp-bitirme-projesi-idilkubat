@@ -1,20 +1,21 @@
 package com.java.last.project.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Authors")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Authors {
 
 	@Id
@@ -28,20 +29,15 @@ public class Authors {
 	@Column(name = "authorSurname")
 	private String authorSurname;
 
-	 @ManyToMany(fetch = FetchType.LAZY,
-	            cascade = {
-	                CascadeType.PERSIST,
-	                CascadeType.MERGE
-	            },
-	            mappedBy = "authors")
-	    private Set<Book> book = new HashSet<>();
+	@OneToMany(mappedBy = "authors", cascade = CascadeType.ALL)
+	private Set<Book> book;
 
-	public Set<Book> getBooks() {
+	public Set<Book> getBook() {
 		return book;
 	}
 
-	public void setBooks(Set<Book> books) {
-		this.book = books;
+	public void setBook(Set<Book> book) {
+		this.book = book;
 	}
 
 	public int getAuthorID() {

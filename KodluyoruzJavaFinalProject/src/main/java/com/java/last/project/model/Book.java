@@ -1,38 +1,48 @@
 package com.java.last.project.model;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Books")
+@Table(name = "books")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Book {
 
 	@Id
 	@Column(name = "book_id")
 	@GeneratedValue(strategy = GenerationType.AUTO) // id'nin nasıl arttığını belirtiriz
-	@JsonIgnore
 	private Long bookId;
 
-	@Column(name = "bookName")
-	@JsonIgnore
+	@Column(name = "book_name")
 	private String bookName;
-	@Column(name = "publicationYear")
-	@JsonIgnore
+	@Column(name = "publication_year")
 	private Date publicationYear;
-	@Column(name = "bookNote")
-	@JsonIgnore
+	@Column(name = "book_note")
 	private String bookNote;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "book_authors", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "author_id") })
-	@JsonIgnore
-	private Set<Authors> authors = new HashSet<>();
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="author_id", nullable = false)
+	private Authors authors;
+	
+	public Authors getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(Authors authors) {
+		this.authors = authors;
+	}
 
 	public Long getBookId() {
 		return bookId;
@@ -40,14 +50,6 @@ public class Book {
 
 	public void setBookId(Long bookId) {
 		this.bookId = bookId;
-	}
-
-	public Set<Authors> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(Set<Authors> authors) {
-		this.authors = authors;
 	}
 
 	public String getBookName() {
