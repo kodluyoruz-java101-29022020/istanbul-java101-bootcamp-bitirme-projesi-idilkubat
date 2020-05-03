@@ -12,6 +12,7 @@ public interface AuthorService {
 	public void saveAuthor(Authors author);
 	public void updateAuthor(Authors author, int authorId);
 	public void deleteAuthor(int authorId);
+	public Authors findByAuthorId(int authorId);
 	public List<Authors> getAll();
 	
 }

@@ -43,14 +43,15 @@ public class PageController {
 		return "pages/book_save";
 	}
 
-	@RequestMapping(value = "/book", method = RequestMethod.POST)
+	@RequestMapping(value = "/book/list", method = RequestMethod.POST)
 	public String save(Book book, BindingResult result, Model model) {
-
+		System.err.println("POST");
 		bookService.save(book);
-
-		model.addAttribute("book", bookService.getAll());
+		
+		System.err.println(book);
+		model.addAttribute("books", bookService.getAll());
 
 		return "pages/book_list";
+		
 	}
-
 }

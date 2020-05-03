@@ -51,4 +51,11 @@ public class AuthorServiceImpl implements AuthorService{
 		return authorRepository.listAllAuthor();
 	}
 
+	@Override
+	public Authors findByAuthorId(int authorId) {
+		// TODO Auto-generated method stub
+		return authorRepository.findById(authorId);
+		
+	}
+
 }

@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -26,8 +29,13 @@ public class Book {
 
 	@Column(name = "book_name")
 	private String bookName;
+	
+	// TODO: Publication Year will be change, it haven't seen.
+	
 	@Column(name = "publication_year")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date publicationYear;
+	
 	@Column(name = "book_note")
 	private String bookNote;
 

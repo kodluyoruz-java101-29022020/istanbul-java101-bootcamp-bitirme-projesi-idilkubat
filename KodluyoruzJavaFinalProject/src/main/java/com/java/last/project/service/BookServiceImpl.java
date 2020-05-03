@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
 	private BookRepository bookRepository;
 
 	@Override
-	@Transactional // rollbackFor
+	@Transactional
 	public void save(Book book) {
 		// TODO Auto-generated method stub
 		bookRepository.save(book);

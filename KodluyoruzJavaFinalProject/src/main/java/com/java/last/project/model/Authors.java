@@ -20,7 +20,7 @@ public class Authors {
 
 	@Id
 	@Column(name = "author_id")
-	@GeneratedValue(strategy = GenerationType.AUTO) // id'nin nasıl arttığını belirtiriz
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private int authorID;
 
 	@Column(name = "authorName")

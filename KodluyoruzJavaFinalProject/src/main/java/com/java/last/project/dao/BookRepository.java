@@ -20,5 +20,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
 	@Query("Select b From Book b Where b.bookName like '%:bookName%'") // id ye göre kitabı bulma
 	public List<Book> findByBookName(@Param("bookName") String bookName);
+	
 
 }

@@ -23,6 +23,7 @@ public class BookApiController {
 	@RequestMapping(value = "/api/book/save", method = RequestMethod.POST)
 	public void saveBook(@RequestBody Book book) {
 		bookService.save(book);
+		
 	}
 
 	@RequestMapping(value = "/api/book/update", method = RequestMethod.PUT)
@@ -41,6 +42,11 @@ public class BookApiController {
 		return bookService.findByBookName(bookName);
 	}
 
+	@RequestMapping(value = "/api/book/search/id", method = RequestMethod.GET)
+	public Book searchBookById(@PathVariable Long bookId) {
+		return bookService.findByBookId(bookId);
+	}
+	
 	@RequestMapping(value = "/api/book/search/all", method = RequestMethod.GET)
 	public List<Book> searchBook() {
 

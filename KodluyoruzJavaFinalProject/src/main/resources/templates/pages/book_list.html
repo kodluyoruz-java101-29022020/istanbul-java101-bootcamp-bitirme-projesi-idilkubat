@@ -27,6 +27,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Book Name</th>
+								<th>Author Name</th>
 								<th>Publication Year</th>
 								<th>Book Note</th>
 							</tr>
@@ -35,6 +36,7 @@
 							<tr th:each="book : ${books}">
 								<td th:text="${book.bookId}"></td>
 								<td th:text="${book.bookName}"></td>
+								<td th:text="${book.authors.authorName}"></td>
 								<td th:text="${book.publicationYear}"></td>
 								<td th:text="${book.bookNote}"></td>
 							</tr>
