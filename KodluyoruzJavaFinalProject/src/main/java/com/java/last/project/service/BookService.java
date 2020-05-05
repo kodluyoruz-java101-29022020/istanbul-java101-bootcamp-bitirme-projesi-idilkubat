@@ -8,7 +8,7 @@ import com.java.last.project.model.Book;
 @Service
 public interface BookService {
 	
-	public void save(Book book);
+	public Book save(Book book);
 	public void update(Book book);
 	public void delete(Long bookId);
 	public List<Book> getAll();

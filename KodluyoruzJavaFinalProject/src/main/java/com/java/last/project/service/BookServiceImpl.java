@@ -20,9 +20,9 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public void save(Book book) {
+	public Book save(Book book) {
 		// TODO Auto-generated method stub
-		bookRepository.save(book);
+			return bookRepository.save(book);
 	}
 
 	@MethodRunningTime(active = true)
@@ -61,5 +61,7 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookRepository.findByBookId(bookId);
 	}
+
+
 
 }

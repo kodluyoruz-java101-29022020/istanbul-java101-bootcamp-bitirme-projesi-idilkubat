@@ -36,6 +36,22 @@ public class BookControllerIT {
 	
 	@Test
 	@Order(1)
+	public void findBookById() {
+		
+
+		String url = prepareBookRestServiceRootUrl() + "/search/id?bookId=2";
+
+		ResponseEntity<Book> response = restTemplate.getForEntity(url, Book.class);
+
+		Book book = response.getBody();
+
+		Assert.assertTrue(2 == book.getBookId());
+
+	}
+
+	
+	@Test
+	@Order(2)
 	public void saveBook() {
 		
 		String url = prepareBookRestServiceRootUrl() + "/save";
@@ -50,6 +66,31 @@ public class BookControllerIT {
 
 		Assert.assertTrue(response.getBody().getBookId() != null);
 		
+	}
+	
+	@Test
+	@Order(3)
+	public void searchByBookName() {
+		// kitap adına göre veritabanında arama yapan rest api testi yazıldı
+
+		String url = prepareBookRestServiceRootUrl() + "/search?bookName=idil";
+
+		ResponseEntity<Book[]> response = restTemplate.getForEntity(url, Book[].class);
+
+		Assert.assertTrue(response.getBody().length > 0);
+
+	}
+	
+	@Test
+	@Order(4)
+	public void deleteByBookId() {
+
+		String url = prepareBookRestServiceRootUrl() + "/delete?bookId=2";
+
+		ResponseEntity<Book[]> response = restTemplate.getForEntity(url, Book[].class);
+
+		Assert.assertTrue(response.getBody().length > 0);
+
 	}
 	
 	private String prepareBookRestServiceRootUrl() {	
