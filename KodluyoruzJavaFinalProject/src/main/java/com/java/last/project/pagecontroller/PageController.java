@@ -42,6 +42,14 @@ public class PageController {
 
 		return "pages/book_save";
 	}
+	
+	@RequestMapping(value = "/book/search", method = RequestMethod.GET)
+	public String getBookSearchPage(String bookName, Model model) {
+		bookService.findByBookName(bookName);
+		model.addAttribute("books", bookService.getAll());
+
+		return "pages/book_search";
+	}
 
 	@RequestMapping(value = "/book/list", method = RequestMethod.POST)
 	public String save(Book book, BindingResult result, Model model) {
